@@ -35,18 +35,20 @@ public class Main {
             System.out.println("Так далеко не доставляем");
     }
 
-    public static void duplicatesSearch(String strSearch) {
+    public static void duplicatesSearchTask4(String strSearch) {
         char[] array = strSearch.toCharArray();
         Arrays.sort(array);
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] == array[i + 1]) {
                 System.out.println("В строке найден дубль и это символ: " + array[i]);
                 break;
-            }
+            } else
+                System.out.println("Дубликат не найден");
+            break;
         }
     }
 
-    public static void arrayFlipping(int[] array) {
+    public static void arrayFlippingTask5(int[] array) {
         System.out.println(Arrays.toString(array));
         int n = 0;
         for (int i = 0; i < array.length / 2; i++) {
@@ -57,12 +59,42 @@ public class Main {
         System.out.println(Arrays.toString(array));
     }
 
+
+    public static double findMiddleTask6(int[] middleSum) {
+        int sum = (int) calcSumTask6(middleSum);
+        return calcMiddleTask6(sum, middleSum.length);
+
+    }
+
+    private static double calcMiddleTask6(int sum, int length) {
+        return (double) sum / length;
+    }
+
+    private static double calcSumTask6(int[] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+
     public static void main(String[] args) {
-        task1();
-        task2();
-        task3();
-        task4();
-        task5();
+//        task1();
+//        task2();
+//        task3();
+//        task4();
+//        task5();
+        task6();
+    }
+
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
     }
 
     public static void task1() {
@@ -83,12 +115,19 @@ public class Main {
 
     public static void task4() {
         String str = "aabccddefgghiijjkk";
-        duplicatesSearch(str);
+        duplicatesSearchTask4(str);
     }
 
     public static void task5() {
         int[] array = {3, 2, 1, 6, 5};
-        arrayFlipping(array);
+        arrayFlippingTask5(array);
+    }
+
+    public static void task6() {
+        int[] arrayOfSum = generateRandomArray();
+        double avg = findMiddleTask6(arrayOfSum);
+        System.out.println("Средняя сумма трат за месяц составила "+avg+" рублей");
+
     }
 }
 
